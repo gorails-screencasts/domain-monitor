@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount MissionControl::Jobs::Engine, at: "/jobs"
+
   resources :domains do
     resource :sync, controller: :sync, module: :domains
   end

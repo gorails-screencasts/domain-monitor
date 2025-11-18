@@ -71,3 +71,5 @@ gem "rdap", "~> 0.1.5"
 gem "openssl", "~> 3.3"
 gem "pay", "~> 11.3"
 gem "stripe", "~> 17.2"
+
+gem "mission_control-jobs", "~> 1.1"
