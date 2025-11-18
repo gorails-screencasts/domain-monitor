@@ -1,0 +1,18 @@
+<header class="prose max-w-none p-4 flex justify-between items-center">
+  <%= link_to "Domain Montior", root_path, class: "text-xl font-bold" %>
+
+  <div class="flex items-center gap-4">
+    <% if authenticated? %>
+      <%= link_to "Domains", domains_path %>
+      <% if Current.user.payment_processor&.subscribed? %>
+        <%= link_to "Billing", billing_path, data: {turbo: false} %>
+      <% else %>
+        <%= link_to "Subscribe", checkout_path, data: {turbo: false} %>
+      <% end %>
+      <%= button_to "Logout", session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Log in", new_session_path %>
+      <%= link_to "Sign up", new_registration_path %>
+    <% end %>
+  </div>
+</header>

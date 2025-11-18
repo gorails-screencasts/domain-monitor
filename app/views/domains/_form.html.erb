@@ -1,0 +1,4 @@
+<%= form_with model: domain do |form| %>
+  <%= form.text_field :name, placeholder: "example.org", autofocus: true, required: true %>
+  <%= form.submit "Add domain" %>
+<% end %>

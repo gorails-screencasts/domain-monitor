@@ -1,0 +1,56 @@
+<% content_for :head do %>
+  <meta name="turbo-refresh-method" content="morph">
+  <meta name="turbo-refresh-scroll" content="preserve">
+<% end %>
+
+<%= turbo_stream_from :domains %>
+
+<% @domains.each do |domain| %>
+  <%= turbo_stream_from domain %>
+<% end %>
+
+<h1>My Domains</h1>
+
+<%= render "form", domain: Domain.new %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sort_link_to "Domain", "name" %></th>
+      <th><%= sort_link_to "Expires", "expires_at" %></th>
+      <th><%= sort_link_to "Last Checked", "last_checked_at" %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @domains.each do |domain| %>
+      <tr>
+        <td><%= domain.name %></td>
+        <td>
+          <% if domain.available? %>
+            <div class="bg-green-50 text-green-700 p-2 rounded">
+              Available
+            </div>
+          <% elsif domain.unknown? %>
+            <div>Unknown</div>
+          <% elsif domain.expires_soon? %>
+            <div class="bg-orange-50 text-orange-700 p-2 rounded">
+              <%= l domain.expires_at.to_date, format: :long %>
+            </div>
+          <% else %>
+            <div class="bg-gray-50 text-gray-700 p-2 rounded">
+              <%= l domain.expires_at.to_date, format: :long %>
+            </div>
+          <% end %>
+        </td>
+        <td>
+          <%= domain.last_checked_at? ? "#{time_ago_in_words(domain.last_checked_at).capitalize} ago" : "Never" %>
+        </td>
+        <td class="flex items-center gap-2">
+          <%= button_to "Sync", domain_sync_path(domain), method: :patch %>
+          <%= button_to "Remove", domain, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

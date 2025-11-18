@@ -1,0 +1,17 @@
+<h1>Sign up</h1>
+
+<%= form_with model: @user, url: registrations_path do |form| %>
+  <%= render "application/errors", form: form %>
+
+  <div class="mb-4">
+    <%= form.label :email_address %>
+    <%= form.email_field :email_address, required: true, autofocus: true, placeholder: "you@example.org" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :password %>
+    <%= form.password_field :password, required: true %>
+  </div>
+
+  <div><%= form.submit %></div>
+<% end %>

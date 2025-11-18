@@ -1,0 +1,10 @@
+<h1>Monitor your domain expirations</h1>
+
+<% if authenticated? %>
+  <%= render "domains/form", domain: Domain.new %>
+<% else %>
+  <%= form_with url: new_registration_path, method: :get do |form| %>
+    <%= form.text_field :domain, placeholder: "example.org", autofocus: true %>
+    <%= form.button "Start monitoring", name: nil %>
+  <% end %>
+<% end %>
