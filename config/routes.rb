@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  draw :madmin
   mount MissionControl::Jobs::Engine, at: "/jobs"
 
   resources :domains do

@@ -1,0 +1,35 @@
+<header class="header">
+  <h1>Dashboard</h1>
+</header>
+
+<section>
+  <div class="metrics">
+    <div class="metric">
+      <h4>Users</h4>
+      <p><%= User.count %></p>
+    </div>
+
+    <div class="metric">
+      <h4>Domains</h4>
+      <p><%= Domain.count %></p>
+    </div>
+
+    <div class="metric">
+      <h4>Subscriptions</h4>
+      <p><%= Pay::Subscription.active.count %></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Recent users</h2>
+
+  <ul>
+    <% User.order(created_at: :desc).each do |user| %>
+      <li>
+        <%= link_to user.email, madmin_user_path(user) %> -
+        <%= time_ago_in_words user.created_at %> ago
+      </li>
+    <% end %>
+  </ul>
+</section>

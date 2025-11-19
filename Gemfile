@@ -73,3 +73,5 @@ gem "pay", "~> 11.3"
 gem "stripe", "~> 17.2"
 
 gem "mission_control-jobs", "~> 1.1"
+
+gem "madmin", "~> 2.1"
