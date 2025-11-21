@@ -17,14 +17,20 @@ class Domain < ApplicationRecord
   end
 
   def sync
-    rdap = RDAP.domain(name)
-    expiration = Time.parse(rdap.dig("events").find{ it.dig("eventAction") == "expiration" }.dig("eventDate"))
     update(
-      expires_at: expiration,
+      expires_at: rdap_expiration || whois_expiration,
       last_checked_at: Time.current
     )
+  end
+
+  def rdap_expiration
+    Time.parse(RDAP.domain(name).dig("events").find{ it.dig("eventAction") == "expiration" }.dig("eventDate"))
   rescue RDAP::NotFound, RDAP::SSLError
-    update(expires_at: nil, last_checked_at: Time.current)
+    nil
+  end
+
+  def whois_expiration
+    Whois.whois(name).parser.expires_on
   end
 
   after_update_commit do
