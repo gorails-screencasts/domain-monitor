@@ -17,3 +17,7 @@ production:
   domains_expires_soon_job:
     class: Domain::ExpiresSoonJob
     schedule: at 8am every day
+
+  sync_all_job:
+    class: Domain::SyncAllJob
+    schedule: every 4 hours
