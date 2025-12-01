@@ -70,7 +70,7 @@ end
 gem "madmin", "~> 2.1"
 gem "mission_control-jobs", "~> 1.1"
 gem "openssl", "~> 3.3"
-gem "pay", "~> 11.3"
+gem "pay", "~> 11.4"
 gem "rdap", "~> 0.1.5"
 gem "stripe", "~> 17.2"
 gem "whois-parser", github: "jarthod/whois-parser"
