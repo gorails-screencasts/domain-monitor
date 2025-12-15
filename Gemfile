@@ -69,7 +69,7 @@ end
 
 gem "madmin", "~> 2.1"
 gem "mission_control-jobs", "~> 1.1"
-gem "openssl", "~> 3.3"
+gem "openssl", "~> 4.0"
 gem "pay", "~> 11.3"
 gem "rdap", "~> 0.1.5"
 gem "stripe", "~> 17.2"
