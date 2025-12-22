@@ -72,7 +72,7 @@ gem "mission_control-jobs", "~> 1.1"
 gem "openssl", "~> 3.3"
 gem "pay", "~> 11.3"
 gem "rdap", "~> 0.1.5"
-gem "stripe", "~> 17.2"
+gem "stripe", "~> 18.1"
 gem "whois-parser", github: "jarthod/whois-parser"
 
 gem "mailpace-rails", "~> 0.4.3"
